@@ -1,16 +1,13 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
-
-const ItemSchema = new Schema({
-  title: { type: String, required: true, maxLength: 100 },
-  shape: { type: Schema.Types.ObjectId, ref: 'Shape', required: true },
-  category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
-  salepitch: { type: String, required: true, maxLength: 100 },
+const ItemSchema = new mongoose.Schema({
+  title: { type: String, required: true, minLength: 1, maxLength: 18 },
+  shape: { type: mongoose.Schema.Types.ObjectId, ref: 'Shape', required: true },
+  color: { type: mongoose.Schema.Types.ObjectId, ref: 'Color', required: true },
 });
 
 // Virtual for shape's URL
-ShapeSchema.virtual('url').get(function () {
+ItemSchema.virtual('url').get(function () {
   return '/catalog/shape/' + this._id;
 });
 

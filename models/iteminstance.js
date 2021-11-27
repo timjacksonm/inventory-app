@@ -1,9 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
-
-const ItemInstanceSchema = new Schema({
-  item: { type: Schema.Types.ObjectId, ref: 'Item', required: true }, //reference to the associated item
+const ItemInstanceSchema = new mongoose.Schema({
+  item: { type: mongoose.Schema.Types.ObjectId, ref: 'Item', required: true }, //reference to the associated item
   stockcount: { type: Number, required: true, maxlength: 100 },
   status: {
     type: String,
