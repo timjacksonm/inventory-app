@@ -8,6 +8,14 @@ body {
 a {
   color: #00b7ff;
 }
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
+}
+.nav a {
+  padding: 0 1em;
+}
 .container {
   display: flex;
   justify-content: space-between;
