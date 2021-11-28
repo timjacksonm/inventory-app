@@ -1,5 +1,7 @@
 const Item = require('../models/item');
 const Color = require('../models/color');
+const ItemInstance = require('../models/iteminstance');
+const item = require('../models/item');
 
 // Site Home
 exports.index = function (req, res) {
@@ -24,10 +26,11 @@ exports.item_list_get = async function (req, res) {
 // Display single item based on ID
 exports.item_view_get = async function (req, res) {
   try {
-    const itemData = await Item.findById(req.params.id)
-      .populate('shape')
-      .populate('color');
-    res.render('item', { item_data: itemData });
+    const itemData = await ItemInstance.find({ item: req.params.id })
+      .populate('item')
+      .populate({ path: 'item', populate: { path: 'shape' } })
+      .populate({ path: 'item', populate: { path: 'color' } });
+    res.render('item', { item_data: itemData[0].item, instance: itemData[0] });
   } catch (e) {
     console.log('Error: ' + e.message);
   }

@@ -237,6 +237,66 @@ function createItemInstances(cb) {
       function (callback) {
         itemInstanceCreate(items[4], 0, 'Coming Soon', callback);
       },
+      function (callback) {
+        itemInstanceCreate(items[5], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[6], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[7], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[8], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[9], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[10], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[11], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[12], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[13], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[14], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[15], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[16], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[17], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[18], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[19], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[20], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[21], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[22], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[23], 10, 'In Stock', callback);
+      },
+      function (callback) {
+        itemInstanceCreate(items[24], 10, 'In Stock', callback);
+      },
     ],
     // optional callback
     cb
