@@ -16,8 +16,15 @@ exports.item_list_get = async function (req, res) {
 };
 
 // Display single item based on ID
-exports.item_view_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Single Item Expanded Page');
+exports.item_view_get = async function (req, res) {
+  try {
+    const itemData = await Item.findById(req.params.id)
+      .populate('shape')
+      .populate('color');
+    res.render('item', { item_data: itemData });
+  } catch (e) {
+    console.log('Error: ' + e.message);
+  }
 };
 
 // Display create an item page

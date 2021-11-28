@@ -3,14 +3,24 @@
   <h1><%= title %></h1>
   <div>
     <a href="/">Home</a>
-    <a href="/home/inventory/create/item">Create Item</a>
-    <a href="/home/inventory/create/color">Create Color</a>
+    <a href="/home/inventory/create/item">Create New Item</a>
+    <a href="/home/inventory/create/color">Create New Color</a>
   </div>
 </nav>
 
 <div class="container">
   <% item_list.forEach(item => { %>
-  <div class="item">
+  <div
+    class="item"
+    style="
+      border-color: rgba(
+        <%= item.color.red %>,
+        <%= item.color.green %>,
+        <%= item.color.blue %>,
+        0.3
+      );
+    "
+  >
     <a href="/home/inventory/item/<%= item._id %>"
       ><span class="cover"></span
     ></a>

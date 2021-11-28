@@ -14,7 +14,7 @@ const shapes = [];
 const items = [];
 const iteminstances = [];
 
-async function colorCreate(name, red, blue, green, cb) {
+async function colorCreate(name, red, green, blue, cb) {
   try {
     const color = await Color.create({
       name: name,

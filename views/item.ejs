@@ -1,0 +1,57 @@
+<%- include('header') -%>
+<nav class="nav">
+  <div>
+    <a href="/home/inventory/<%= item_data._id %>/update">Update Item</a>
+    <a href="/home/inventory/<%= item_data._id %>/delete">Delete Item</a>
+  </div>
+  <div>
+    <a href="/home/inventory">Back</a>
+    <a href="/home/inventory/create/item">Create New Item</a>
+    <a href="/home/inventory/create/color">Create New Color</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div
+    class="item"
+    style="
+      border-color: rgba(
+        <%= item_data.color.red %>,
+        <%= item_data.color.green %>,
+        <%= item_data.color.blue %>,
+        0.3
+      );
+    "
+  >
+    <h2>Item Name: <%= item_data.title %></h2>
+    <p>
+      <%= item_data.shape.shapeType %> shape with a color of <%=
+      item_data.color.name %>
+    </p>
+    <div
+      style="
+        width: <%= item_data.shape.width %>px;
+        height: <%= item_data.shape.height %>px;
+        fill: rgb(
+          <%= item_data.color.red %>,
+          <%= item_data.color.green %>,
+          <%= item_data.color.blue %>
+        );
+      "
+    >
+      <%- include(`../public/images/${item_data.shape.shapeType}.svg`) -%>
+    </div>
+    <div>
+      <h3>Specifications:</h3>
+      <p>Type: <%= item_data.shape.shapeType %></p>
+      <p>Width: <%= item_data.shape.width %>px</p>
+      <p>Height: <%= item_data.shape.height %>px</p>
+      <p>Color Name: <%= item_data.color.name %></p>
+      <p>
+        RGB Value: <%= item_data.color.red %>, <%= item_data.color.green %>, <%=
+        item_data.color.blue %>
+      </p>
+    </div>
+  </div>
+</div>
+<%- include('footer') -%>
