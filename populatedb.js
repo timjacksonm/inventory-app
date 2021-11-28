@@ -153,6 +153,66 @@ function createItems(cb) {
       function (callback) {
         itemCreate('Default5', colors[4], shapes[0], callback);
       },
+      function (callback) {
+        itemCreate('Default1', colors[0], shapes[1], callback);
+      },
+      function (callback) {
+        itemCreate('Default2', colors[1], shapes[1], callback);
+      },
+      function (callback) {
+        itemCreate('Default3', colors[2], shapes[1], callback);
+      },
+      function (callback) {
+        itemCreate('Default4', colors[3], shapes[1], callback);
+      },
+      function (callback) {
+        itemCreate('Default5', colors[4], shapes[1], callback);
+      },
+      function (callback) {
+        itemCreate('Default1', colors[0], shapes[2], callback);
+      },
+      function (callback) {
+        itemCreate('Default2', colors[1], shapes[2], callback);
+      },
+      function (callback) {
+        itemCreate('Default3', colors[2], shapes[2], callback);
+      },
+      function (callback) {
+        itemCreate('Default4', colors[3], shapes[2], callback);
+      },
+      function (callback) {
+        itemCreate('Default5', colors[4], shapes[2], callback);
+      },
+      function (callback) {
+        itemCreate('Default1', colors[0], shapes[3], callback);
+      },
+      function (callback) {
+        itemCreate('Default2', colors[1], shapes[3], callback);
+      },
+      function (callback) {
+        itemCreate('Default3', colors[2], shapes[3], callback);
+      },
+      function (callback) {
+        itemCreate('Default4', colors[3], shapes[3], callback);
+      },
+      function (callback) {
+        itemCreate('Default5', colors[4], shapes[3], callback);
+      },
+      function (callback) {
+        itemCreate('Default1', colors[0], shapes[4], callback);
+      },
+      function (callback) {
+        itemCreate('Default2', colors[1], shapes[4], callback);
+      },
+      function (callback) {
+        itemCreate('Default3', colors[2], shapes[4], callback);
+      },
+      function (callback) {
+        itemCreate('Default4', colors[3], shapes[4], callback);
+      },
+      function (callback) {
+        itemCreate('Default5', colors[4], shapes[4], callback);
+      },
     ],
     // optional callback
     cb
