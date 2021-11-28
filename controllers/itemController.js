@@ -2,12 +2,17 @@ const Item = require('../models/item');
 
 // Site Home
 exports.index = function (req, res) {
-  res.send('NOT IMPLEMENTED: Site Home Page');
+  res.render('index', { title: 'Inventory of shapes with colors' });
 };
 
 // Display all items
-exports.item_list_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Site Items Page');
+exports.item_list_get = async function (req, res) {
+  try {
+    const Items = await Item.find().populate('shape').populate('color');
+    res.render('inventory', { title: 'Current Inventory', item_list: Items });
+  } catch (e) {
+    console.log('Error: ' + e.message);
+  }
 };
 
 // Display single item based on ID

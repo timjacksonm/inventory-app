@@ -45,7 +45,7 @@ async function shapeCreate(shapeType, width, height, cb) {
   }
 }
 
-async function itemCreate(title, shape, color, cb) {
+async function itemCreate(title, color, shape, cb) {
   try {
     const item = await Item.create({
       title: title,
