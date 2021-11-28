@@ -10,10 +10,14 @@ a {
 }
 .nav {
   display: flex;
-  justify-content: flex-end;
-  margin: 2em;
+  justify-content: space-between;
+  margin: 2em 0;
 }
-.nav a {
+.nav div {
+  display: flex;
+  align-items: center;
+}
+.nav div a {
   padding: 0 1em;
 }
 .container {

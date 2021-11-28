@@ -1,10 +1,13 @@
 <%- include('header') -%>
 <nav class="nav">
-  <a href="/">Home</a>
-  <a href="/home/inventory/create/item">Create Item</a>
-  <a href="/home/inventory/create/color">Create Color</a>
+  <h1><%= title %></h1>
+  <div>
+    <a href="/">Home</a>
+    <a href="/home/inventory/create/item">Create Item</a>
+    <a href="/home/inventory/create/color">Create Color</a>
+  </div>
 </nav>
-<h1><%= title %></h1>
+
 <div class="container">
   <% item_list.forEach(item => { %>
   <div class="item">
