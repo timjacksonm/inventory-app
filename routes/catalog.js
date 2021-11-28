@@ -11,10 +11,10 @@ router.get('/', item_controller.index);
 router.get('/inventory', item_controller.item_list_get);
 
 // GET request for list of items sorted by shape
-router.get('/inventory/sort/:shape', shape_controller.items_sorted);
+router.get('/inventory/sort/shape', shape_controller.items_sorted);
 
 // GET request for list of items sorted by color
-router.get('/inventory/sort/:color', color_controller.items_sorted);
+router.get('/inventory/sort/color', color_controller.color_sorted);
 
 // GET request for create a color page
 router.get('/inventory/create/color', color_controller.create_color_get);

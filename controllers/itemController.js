@@ -1,4 +1,5 @@
 const Item = require('../models/item');
+const Color = require('../models/color');
 
 // Site Home
 exports.index = function (req, res) {
@@ -9,7 +10,12 @@ exports.index = function (req, res) {
 exports.item_list_get = async function (req, res) {
   try {
     const Items = await Item.find().populate('shape').populate('color');
-    res.render('inventory', { title: 'Current Inventory', item_list: Items });
+    const colors = await Color.find();
+    res.render('inventory', {
+      title: 'Current Inventory',
+      item_list: Items,
+      color_list: colors,
+    });
   } catch (e) {
     console.log('Error: ' + e.message);
   }

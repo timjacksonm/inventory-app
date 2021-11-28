@@ -1,6 +1,17 @@
 <%- include('header') -%>
 <nav class="nav">
   <h1><%= title %></h1>
+  <form action="/home/inventory/sort/color" method="GET">
+    <p>Sort by Color:</p>
+    <select name="value" id="sort">
+      <option value="All">All</option>
+      <% color_list.map(color => { %>
+      <option value="<%= color.name %>"><%= color.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+
   <div>
     <a href="/">Home</a>
     <a href="/home/inventory/create/item">Create New Item</a>
