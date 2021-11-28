@@ -3,28 +3,28 @@
 <div class="container">
   <% item_list.forEach(item => { %>
   <div class="item">
-    <h2>Title: <%= item.title %></h2>
-    <p>Type: <%= item.shape.shapeType %></p>
-    <p>Width: <%= item.shape.width %></p>
-    <p>Height: <%= item.shape.height %></p>
-    <p>Color: <%= item.color.name %></p>
-    <p>Red: <%= item.color.red %></p>
-    <p>Green: <%= item.color.green %></p>
-    <p>Blue: <%= item.color.blue %></p>
+    <a href="/home/inventory/item/<%= item._id %>"
+      ><span class="cover"></span
+    ></a>
+    <h2>Item Name: <%= item.title %></h2>
+    <p>
+      <%= item.shape.shapeType %> shape with a color of <%= item.color.name %>
+    </p>
+    <div
+      style="
+        width: <%= item.shape.width %>px;
+        height: <%= item.shape.height %>px;
+        fill: rgb(
+          <%= item.color.red %>,
+          <%= item.color.green %>,
+          <%= item.color.blue %>
+        );
+      "
+    >
+      <%- include(`../public/images/${item.shape.shapeType}.svg`) -%>
+    </div>
   </div>
-  <div
-    style="
-      width: <%= item.shape.width %>px;
-      height: <%= item.shape.height %>px;
-      fill: rgb(
-        <%= item.color.red %>,
-        <%= item.color.green %>,
-        <%= item.color.blue %>
-      );
-    "
-  >
-    <%- include(`../public/images/${item.shape.shapeType}.svg`) -%>
-  </div>
+
   <% }) %>
 </div>
 <%- include('footer') -%>

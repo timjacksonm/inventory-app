@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  background-color: #12181b;
+  color: #fff;
 }
 
 a {
@@ -10,4 +12,29 @@ a {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: transparent;
+  width: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+.item {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  padding: 3em;
+  margin: 0.5em 0;
+  border: 2px solid #09c372;
+  background-color: #2a2e35;
+}
+.item:hover {
+  background-color: #2a2e3571;
 }
