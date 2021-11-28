@@ -1,12 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const item_controller = require('../controllers/itemController');
+const shape_controller = require('../controllers/shapeController');
+const color_controller = require('../controllers/colorController');
 
 // GET catalog home page.
 router.get('/', item_controller.index);
 
 // GET request for list of all items
 router.get('/inventory', item_controller.item_list_get);
+
+// GET request for list of items sorted by shape
+router.get('/inventory/sort/:shape', shape_controller.items_sorted);
+
+// GET request for list of items sorted by color
+router.get('/inventory/sort/:color', color_controller.items_sorted);
 
 // GET request to view single item expanded
 router.get('/inventory/item/:id', item_controller.item_view_get);
