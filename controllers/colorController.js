@@ -48,12 +48,12 @@ exports.color_remove_post = async function (req, res) {
       '_id name'
     );
     if (selectedColor !== null) {
-      Color.findByIdAndRemove(selectedColor[0]._id, function deleteColor(err) {
+      Color.findByIdAndRemove(selectedColor[0]._id, function callback(err) {
         if (err) {
           return next(err);
         }
-      }),
-        res.send('NOT IMPLEMENTED: Color Create POST');
+      });
+      res.redirect('/home/inventory');
     }
   } catch (e) {
     console.log('Error: ' + e.message);
@@ -61,8 +61,17 @@ exports.color_remove_post = async function (req, res) {
 };
 
 // POST request to create a color
-exports.color_create_post = function (req, res) {
-  const rgbValue = hexRgb(req.body.color);
-  console.log(rgbValue);
-  res.send('NOT IMPLEMENTED: Color Create POST');
+exports.color_create_post = async function (req, res) {
+  try {
+    const { red, green, blue } = hexRgb(req.body.color);
+    await Color.create({
+      name: req.body.name,
+      red: red,
+      green: green,
+      blue: blue,
+    });
+    res.redirect('/home/inventory');
+  } catch (e) {
+    console.log('Error: ' + e.message);
+  }
 };
