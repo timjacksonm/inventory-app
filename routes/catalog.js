@@ -10,14 +10,14 @@ router.get('/', item_controller.index);
 // GET request for list of all items
 router.get('/inventory', item_controller.item_list_get);
 
-// GET request for list of items sorted by shape
-router.get('/inventory/sort/shape', shape_controller.items_sorted);
-
 // GET request for list of items sorted by color
 router.get('/inventory/sort/color', color_controller.color_sorted);
 
-// GET request for create a color page
-router.get('/inventory/create/color', color_controller.create_color_get);
+// GET request for list of items sorted by shape || Not Implemented Yet
+router.get('/inventory/sort/shape', shape_controller.items_sorted);
+
+// GET request for update colors page
+router.get('/inventory/update/colors', color_controller.update_color_get);
 
 // GET request for create item page
 router.get('/inventory/create/item', item_controller.create_item_get);
@@ -35,7 +35,13 @@ router.get('/inventory/:id/update', item_controller.update_item_get);
 router.post('/inventory/create/item', item_controller.item_create_post);
 
 // POST request to create a new color
-router.post('/inventory/create/color', color_controller.color_create_post);
+router.post('/inventory/update/colors', color_controller.color_create_post);
+
+// POST request to remove a color
+router.post(
+  '/inventory/update/colors/remove/:id',
+  color_controller.color_remove_post
+);
 
 // POST request to delete an item
 router.post('/inventory/:id/delete', item_controller.delete_item_post);

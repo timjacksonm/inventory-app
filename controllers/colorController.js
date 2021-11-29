@@ -1,6 +1,7 @@
 const Color = require('../models/color');
 const Item = require('../models/item');
 const url = require('url');
+const hexRgb = require('hex-rgb');
 
 // Display items sorted by color
 exports.color_sorted = async function (req, res) {
@@ -26,12 +27,42 @@ exports.color_sorted = async function (req, res) {
   }
 };
 
-// Display create a color page
-exports.create_color_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Create A Color Page');
+// Display update colors page
+exports.update_color_get = async function (req, res) {
+  try {
+    const colors = await Color.find();
+    res.render('color_form', {
+      title: 'Create or Remove Colors',
+      color_list: colors,
+    });
+  } catch (e) {
+    console.log('Error: ' + e.message);
+  }
+};
+
+// POST request to remove a color
+exports.color_remove_post = async function (req, res) {
+  try {
+    const selectedColor = await Color.find(
+      { name: req.body.value },
+      '_id name'
+    );
+    if (selectedColor !== null) {
+      Color.findByIdAndRemove(selectedColor[0]._id, function deleteColor(err) {
+        if (err) {
+          return next(err);
+        }
+      }),
+        res.send('NOT IMPLEMENTED: Color Create POST');
+    }
+  } catch (e) {
+    console.log('Error: ' + e.message);
+  }
 };
 
 // POST request to create a color
 exports.color_create_post = function (req, res) {
+  const rgbValue = hexRgb(req.body.color);
+  console.log(rgbValue);
   res.send('NOT IMPLEMENTED: Color Create POST');
 };

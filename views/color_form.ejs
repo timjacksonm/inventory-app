@@ -1,0 +1,33 @@
+<%- include('header') -%>
+<nav class="nav">
+  <h1><%= title %></h1>
+  <div>
+    <a href="/home/inventory">Back</a>
+    <a href="/home/inventory/create/item">Create New Item</a>
+    <a href="/home/inventory/update/colors">Update Colors</a>
+  </div>
+</nav>
+
+<form action="/home/inventory/update/colors" method="POST">
+  <h2>Add a new color</h2>
+  <input type="color" name="color" />
+  <p>Name of Color:</p>
+  <input type="text" name="name" />
+  <button class="type submit">Submit</button>
+</form>
+
+<form action="/home/inventory/update/colors/remove/123" method="POST">
+  <h2>Remove a color</h2>
+  <select name="value" id="selection">
+    <% color_list.map(color => { %>
+    <option value="<%= color.name %>"><%= color.name %></option>
+    <% }) %>
+  </select>
+  <button
+    class="type submit"
+    onclick="return confirm('Delete selected color?')"
+  >
+    Submit
+  </button>
+</form>
+<%- include('footer') -%>
