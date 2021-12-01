@@ -12,15 +12,23 @@ exports.index = function (req, res) {
 // Display all items
 exports.item_list_get = async function (req, res) {
   try {
-    const Items = await Item.find().populate('shape').populate('color');
-    const colors = await Color.find();
-    res.render('inventory', {
-      title: 'Current Inventory',
-      item_list: Items,
-      color_list: colors,
-    });
+    const promises = [
+      Item.find().populate('shape').populate('color'),
+      Color.find(),
+    ];
+    const [items, colors] = await Promise.allSettled(promises);
+    if (items && colors) {
+      res.render('inventory', {
+        title: 'Current Inventory',
+        item_list: items,
+        color_list: colors,
+      });
+    }
   } catch (e) {
-    console.log('Error: ' + e.message);
+    res.render('error', {
+      message: 'Error displaying inventory page',
+      error: e,
+    });
   }
 };
 
@@ -40,7 +48,7 @@ exports.item_view_get = async function (req, res) {
 // Display create an item page
 exports.create_item_get = async function (req, res) {
   try {
-    const promises = [Color.find(), Shapes.find()];
+    const promises = [Color.find(), Shape.find()];
     const [colors, shapes] = await Promise.allSettled(promises);
     if (colors && shapes) {
       res.render('create_item_form', {
@@ -55,7 +63,6 @@ exports.create_item_get = async function (req, res) {
       message: 'Error creating a new item.',
       error: e,
     });
-    console.log('Error: ' + e.message);
   }
 };
 
