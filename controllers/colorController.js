@@ -17,13 +17,18 @@ exports.color_sorted = async function (req, res) {
         .populate('color');
     }
     const colors = await Color.find();
-    res.render('inventory', {
-      title: 'Current Inventory',
-      item_list: Items,
-      color_list: colors,
-    });
+    if (colors.length) {
+      res.render('inventory', {
+        title: 'Current Inventory',
+        item_list: Items,
+        color_list: colors,
+      });
+    }
   } catch (e) {
-    console.log('Error: ' + e.message);
+    res.render('error', {
+      message: 'Error displaying inventory sorted by color.',
+      error: e,
+    });
   }
 };
 
@@ -34,10 +39,13 @@ exports.update_color_get = async function (req, res) {
     res.render('color_form', {
       title: 'Create or Remove Colors',
       color_list: colors,
-      error: null,
+      color_in_use: false,
     });
   } catch (e) {
-    console.log('Error: ' + e.message);
+    res.render('error', {
+      message: 'Error displaying update colors page.',
+      error: e,
+    });
   }
 };
 
@@ -52,14 +60,16 @@ exports.color_remove_post = async function (req, res) {
       .count()
       .exec();
 
-    if (!selectedColor || colorInUse) {
+    if (colorInUse) {
       const colors = await Color.find();
       res.render('color_form', {
         title: 'Create or Remove Colors',
         color_list: colors,
-        error: true,
+        color_in_use: true,
       });
-    } else {
+      return;
+    }
+    if (selectedColor.length) {
       Color.findByIdAndRemove(selectedColor[0]._id, function callback(err) {
         if (err) {
           return next(err);
@@ -68,7 +78,10 @@ exports.color_remove_post = async function (req, res) {
       res.redirect('/home/inventory');
     }
   } catch (e) {
-    console.log('Error: ' + e.message);
+    res.render('error', {
+      message: 'Error with request to delete a color.',
+      error: e,
+    });
   }
 };
 

@@ -17,7 +17,7 @@
 
 <form action="/home/inventory/update/colors/remove/123" method="POST">
   <h2>Remove a color</h2>
-  <% if (error) { %>
+  <% if (color_in_use) { %>
   <p style="color: red">
     Please remove items using this color before deleting.
   </p>
