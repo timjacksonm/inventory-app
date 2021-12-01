@@ -12,12 +12,17 @@
   <h2>Add a new color</h2>
   <input type="color" name="color" />
   <p>Name of Color:</p>
-  <input type="text" name="name" minlength="1" maxlength="50" required />
+  <input type="text" name="name" minlength="1" maxlength="10" required />
   <button class="type submit">Submit</button>
 </form>
 
 <form action="/home/inventory/update/colors/remove/123" method="POST">
   <h2>Remove a color</h2>
+  <% if (error) { %>
+  <p style="color: red">
+    Please remove items using this color before deleting.
+  </p>
+  <% } %>
   <select name="value" id="selection">
     <% color_list.map(color => { %>
     <option value="<%= color.name %>"><%= color.name %></option>

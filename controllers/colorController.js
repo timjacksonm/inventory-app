@@ -34,6 +34,7 @@ exports.update_color_get = async function (req, res) {
     res.render('color_form', {
       title: 'Create or Remove Colors',
       color_list: colors,
+      error: null,
     });
   } catch (e) {
     console.log('Error: ' + e.message);
@@ -47,7 +48,18 @@ exports.color_remove_post = async function (req, res) {
       { name: req.body.value },
       '_id name'
     );
-    if (selectedColor !== null) {
+    const colorInUse = await Item.find({ color: selectedColor[0]._id })
+      .count()
+      .exec();
+
+    if (!selectedColor || colorInUse) {
+      const colors = await Color.find();
+      res.render('color_form', {
+        title: 'Create or Remove Colors',
+        color_list: colors,
+        error: true,
+      });
+    } else {
       Color.findByIdAndRemove(selectedColor[0]._id, function callback(err) {
         if (err) {
           return next(err);
