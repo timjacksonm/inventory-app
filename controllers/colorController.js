@@ -97,6 +97,9 @@ exports.color_create_post = async function (req, res) {
     });
     res.redirect('/home/inventory');
   } catch (e) {
-    console.log('Error: ' + e.message);
+    res.render('error', {
+      message: 'Error with request to create a new color.',
+      error: e,
+    });
   }
 };
