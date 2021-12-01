@@ -2,6 +2,7 @@ const Item = require('../models/item');
 const Color = require('../models/color');
 const ItemInstance = require('../models/iteminstance');
 const item = require('../models/item');
+const Shape = require('../models/shape');
 
 // Site Home
 exports.index = function (req, res) {
@@ -37,8 +38,25 @@ exports.item_view_get = async function (req, res) {
 };
 
 // Display create an item page
-exports.create_item_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Create Item Page');
+exports.create_item_get = async function (req, res) {
+  try {
+    const promises = [Color.find(), Shapes.find()];
+    const [colors, shapes] = await Promise.allSettled(promises);
+    if (colors && shapes) {
+      res.render('create_item_form', {
+        title: 'Create A New Item',
+        color_list: colors.value,
+        shape_list: shapes.value,
+        error: null,
+      });
+    }
+  } catch (e) {
+    res.render('error', {
+      message: 'Error creating a new item.',
+      error: e,
+    });
+    console.log('Error: ' + e.message);
+  }
 };
 
 // Display delete an item page

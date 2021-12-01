@@ -1,0 +1,39 @@
+<%- include('header') -%>
+<nav class="nav">
+  <h1><%= title %></h1>
+  <div>
+    <a href="/home/inventory">Back</a>
+    <a href="/home/inventory/update/colors">Update Colors</a>
+  </div>
+</nav>
+
+<form action="" method="POST">
+  <h2>Select a shape</h2>
+  <select name="shapeValue" id="shape">
+    <% shape_list.map(shape => { %>
+    <option value="<%= shape.shapeType %>"><%= shape.shapeType %></option>
+    <% }) %>
+  </select>
+  <h2>Select a color</h2>
+  <select name="colorValue" id="color">
+    <% color_list.map(color => { %>
+    <option
+      value="<%= color.name %>"
+      style="
+        background-color: rgb(
+          <%= color.red %>,
+          <%= color.green %>,
+          <%= color.blue %>
+        );
+      "
+    >
+      <%= color.name %>
+    </option>
+    <% }) %>
+  </select>
+  <h2>Item Name</h2>
+  <input type="text" name="name" minlength="1" maxlength="10" required />
+  <button type="submit">Submit</button>
+</form>
+
+<%- include('footer') -%>
