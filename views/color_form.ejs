@@ -11,18 +11,31 @@
   action="/home/inventory/update/colors/add"
   method="POST"
   onSubmit="document.getElementById('submitAdd').disabled=true;"
+  class="updateColorForm border1color"
 >
   <h2>Add a new color</h2>
   <input type="color" name="color" />
-  <p>Name of Color:</p>
-  <input type="text" name="name" minlength="1" maxlength="10" required />
-  <button id="submitAdd" type="submit">Submit</button>
+  <div style="display: flex">
+    <div style="display: flex; align-items: center">
+      <h2>Name:</h2>
+      <input
+        class="textInput"
+        type="text"
+        name="name"
+        minlength="1"
+        maxlength="10"
+        required
+      />
+    </div>
+    <button id="submitAdd" type="submit" class="btnStyleYes">Submit</button>
+  </div>
 </form>
 
 <form
   action="/home/inventory/update/colors/remove"
   method="POST"
   onSubmit="document.getElementById('submitRemove').disabled=true;"
+  class="updateColorForm border2color"
 >
   <h2>Remove a color</h2>
   <% if (color_in_use) { %>
@@ -38,6 +51,7 @@
   <button
     id="submitRemove"
     type="submit"
+    class="btnStyleNo"
     onclick="return confirm('Delete selected color?')"
   >
     Submit

@@ -78,3 +78,27 @@ a {
   background-color: rgb(9, 195, 114);
   color: #fff;
 }
+.updateColorForm {
+  border: 2px solid;
+  margin: 1em 0;
+  padding: 3em;
+}
+.updateColorForm select {
+  margin: 0 0.83em;
+  width: 140px;
+  height: 46px;
+}
+.textInput {
+  margin: 0.83em;
+  width: 140px;
+  height: 26px;
+}
+.updateColorForm button {
+  margin: 0.83em;
+}
+.border1color {
+  border-color: rgb(9, 195, 114, 0.5);
+}
+.border2color {
+  border-color: rgb(255, 49, 49, 0.5);
+}
