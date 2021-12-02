@@ -1,7 +1,7 @@
 const Color = require('../models/color');
 const Item = require('../models/item');
 const url = require('url');
-const hexRgb = require('hex-rgb');
+const hexRgb = require('hex-to-rgb');
 
 // Display items sorted by color
 exports.color_sorted = async function (req, res) {
@@ -89,12 +89,13 @@ exports.color_remove_post = async function (req, res) {
 // POST request to create a color
 exports.color_create_post = async function (req, res) {
   try {
-    const { red, green, blue } = hexRgb(req.body.color);
+    console.log(req.body.color);
+    const [r, g, b] = hexRgb(req.body.color);
     await Color.create({
       name: req.body.name,
-      red: red,
-      green: green,
-      blue: blue,
+      red: r,
+      green: g,
+      blue: b,
     });
     res.redirect('/home/inventory');
   } catch (e) {
