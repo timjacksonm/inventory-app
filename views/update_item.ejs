@@ -1,0 +1,139 @@
+<%- include('header') -%>
+<nav class="nav">
+  <div>
+    <a href="/home/inventory/<%= item_data._id %>/delete">Delete Item</a>
+  </div>
+  <div>
+    <a href="/home/inventory">Back</a>
+    <a href="/home/inventory/create/item">Create New Item</a>
+    <a href="/home/inventory/update/colors">Update Colors</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div>
+    <div
+      class="item"
+      style="
+        border-color: rgba(
+          <%= item_data.color.red %>,
+          <%= item_data.color.green %>,
+          <%= item_data.color.blue %>,
+          0.3
+        );
+      "
+    >
+      <h2>Item Name: <%= item_data.title %></h2>
+      <p>
+        <%= item_data.shape.shapeType %> shape with a color of <%=
+        item_data.color.name %>
+      </p>
+      <div
+        style="
+          width: <%= item_data.shape.width %>px;
+          height: <%= item_data.shape.height %>px;
+          fill: rgb(
+            <%= item_data.color.red %>,
+            <%= item_data.color.green %>,
+            <%= item_data.color.blue %>
+          );
+        "
+      >
+        <%- include(`../public/images/${item_data.shape.shapeType}.svg`) -%>
+      </div>
+      <div>
+        <h3>Specifications:</h3>
+        <p>Status: <%= instance.status %></p>
+        <p>Stock Count: <%= instance.stockcount %></p>
+        <p>Type: <%= item_data.shape.shapeType %></p>
+        <p>Width: <%= item_data.shape.width %>px</p>
+        <p>Height: <%= item_data.shape.height %>px</p>
+        <p>Color Name: <%= item_data.color.name %></p>
+        <p>
+          RGB Value: <%= item_data.color.red %>, <%= item_data.color.green %>,
+          <%= item_data.color.blue %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <form
+    action=""
+    method="POST"
+    onSubmit="document.getElementById('submitUpdate').disabled=true;"
+    style="flex: 1; margin: 3em"
+  >
+    <h2>Item Name</h2>
+    <input
+      type="text"
+      name="name"
+      minlength="1"
+      maxlength="10"
+      value="<%= item_data.title %>"
+      required
+    />
+    <h2>Select a shape</h2>
+    <select name="shapeId" id="shape">
+      <option value="<%= item_data.shape._id %>" selected>
+        <%= item_data.shape.shapeType %> (current value)
+      </option>
+      <% shape_list.map(shape => { %>
+      <option value="<%= shape._id %>"><%= shape.shapeType %></option>
+      <% }) %>
+    </select>
+    <h2>Select a color</h2>
+    <select name="colorId" id="color">
+      <option
+        value="<%= item_data.color._id %>"
+        style="
+          background-color: rgb(
+            <%= item_data.color.red %>,
+            <%= item_data.color.green %>,
+            <%= item_data.color.blue %>
+          );
+        "
+        selected
+      >
+        <%= item_data.color.name %> (current value)
+      </option>
+      <% color_list.map(color => { %>
+      <option
+        value="<%= color._id %>"
+        style="
+          background-color: rgb(
+            <%= color.red %>,
+            <%= color.green %>,
+            <%= color.blue %>
+          );
+        "
+      >
+        <%= color.name %>
+      </option>
+      <% }) %>
+    </select>
+    <h2>Amount in stock?</h2>
+    <input
+      type="number"
+      name="stockCount"
+      value="<%= instance.stockcount %>"
+      min="0"
+      max="10"
+    />
+    <h2>Are you sure you want to update this item?</h2>
+    <button
+      id="submitUpdate"
+      class="btnStyleNo"
+      formmethod="get"
+      formaction="/home/inventory/item/<%= item_data._id %>"
+    >
+      No
+    </button>
+    <button
+      id="submitUpdate"
+      class="btnStyleYes"
+      formaction="/home/inventory/<%= item_data._id %>/update"
+    >
+      Yes
+    </button>
+  </form>
+</div>
+<%- include('footer') -%>

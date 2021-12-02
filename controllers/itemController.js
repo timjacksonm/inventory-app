@@ -100,8 +100,29 @@ exports.delete_item_get = async function (req, res) {
 };
 
 // Display update an item page
-exports.update_item_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Update Item Page');
+exports.update_item_get = async function (req, res) {
+  try {
+    const itemData = await ItemInstance.find({ item: req.params.id })
+      .populate('item')
+      .populate({ path: 'item', populate: { path: 'shape' } })
+      .populate({ path: 'item', populate: { path: 'color' } });
+    const promises = [Color.find(), Shape.find()];
+    const [colors, shapes] = await Promise.allSettled(promises);
+    if (itemData.length && colors.value.length && shapes.value.length) {
+      res.render('update_item', {
+        item_data: itemData[0].item,
+        instance: itemData[0],
+        color_list: colors.value,
+        shape_list: shapes.value,
+        error: null,
+      });
+    }
+  } catch (e) {
+    res.render('error', {
+      message: 'Error displaying delete item page',
+      error: e,
+    });
+  }
 };
 
 // POST request to create an item
@@ -161,6 +182,38 @@ exports.delete_item_post = async function (req, res) {
 };
 
 // POST request to update an item
-exports.update_item_post = function (req, res) {
-  res.send('NOT IMPLEMENTED: Item Update POST');
+exports.update_item_post = async function (req, res) {
+  try {
+    const instance = await ItemInstance.find({ item: req.params.id }, '_id');
+    const instanceUpdate =
+      req.body.stockCount < 1
+        ? { stockcount: req.body.stockCount, status: 'Out Of Stock' }
+        : { stockcount: req.body.stockCount, status: 'In Stock' };
+    const itemUpdate = {
+      title: req.body.name,
+      shape: ObjectId(req.body.shapeId),
+      color: ObjectId(req.body.colorId),
+    };
+    ItemInstance.findByIdAndUpdate(
+      instance[0]._id,
+      instanceUpdate,
+      function callback(err) {
+        if (err) {
+          return next(err);
+        }
+      }
+    );
+    Item.findByIdAndUpdate(req.params.id, itemUpdate, function callback(err) {
+      if (err) {
+        return next(err);
+      } else {
+        res.redirect(`/home/inventory/item/${req.params.id}`);
+      }
+    });
+  } catch (e) {
+    res.render('error', {
+      message: 'Error updating item by id.',
+      error: e,
+    });
+  }
 };
