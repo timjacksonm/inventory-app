@@ -2,6 +2,7 @@ const Item = require('../models/item');
 const Color = require('../models/color');
 const ItemInstance = require('../models/iteminstance');
 const Shape = require('../models/shape');
+const { ObjectId } = require('mongodb');
 
 // Site Home
 exports.index = function (req, res) {
@@ -89,8 +90,35 @@ exports.update_item_get = function (req, res) {
 };
 
 // POST request to create an item
-exports.item_create_post = function (req, res) {
-  res.send('NOT IMPLEMENTED: Item Create POST');
+exports.item_create_post = async function (req, res) {
+  try {
+    await Item.create({
+      title: req.body.name,
+      shape: ObjectId(req.body.shapeId),
+      color: ObjectId(req.body.colorId),
+    });
+    const itemID = await Item.find({ title: req.body.name }, '_id title');
+    if (req.body.stockCount > 0) {
+      await ItemInstance.create({
+        item: ObjectId(itemID[0]._id.toString()),
+        stockcount: req.body.stockCount,
+        status: 'In Stock',
+      });
+    }
+    if (req.body.stockCount < 1) {
+      await ItemInstance.create({
+        item: ObjectId(itemID[0]._id.toString()),
+        stockcount: req.body.stockCount,
+        status: 'Out Of Stock',
+      });
+    }
+    res.redirect('/home/inventory');
+  } catch (e) {
+    res.render('error', {
+      message: 'Error creating a new item.',
+      error: e,
+    });
+  }
 };
 
 // POST request to delete an item
