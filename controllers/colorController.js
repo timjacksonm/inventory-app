@@ -73,9 +73,10 @@ exports.color_remove_post = async function (req, res) {
       Color.findByIdAndRemove(selectedColor[0]._id, function callback(err) {
         if (err) {
           return next(err);
+        } else {
+          res.redirect('/home/inventory');
         }
       });
-      res.redirect('/home/inventory');
     }
   } catch (e) {
     res.render('error', {

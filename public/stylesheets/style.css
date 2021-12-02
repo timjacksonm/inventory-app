@@ -84,7 +84,6 @@ a {
   padding: 3em;
 }
 .updateColorForm select {
-  margin: 0 0.83em;
   width: 140px;
   height: 46px;
 }
@@ -101,4 +100,12 @@ a {
 }
 .border2color {
   border-color: rgb(255, 49, 49, 0.5);
+}
+.updateItemForm {
+  flex: 1;
+  margin: 0 3em;
+}
+.updateItemForm select {
+  width: 140px;
+  height: 46px;
 }

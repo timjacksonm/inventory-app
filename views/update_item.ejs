@@ -60,10 +60,11 @@
     action=""
     method="POST"
     onSubmit="document.getElementById('submitUpdate').disabled=true;"
-    style="flex: 1; margin: 3em"
+    class="updateItemForm"
   >
-    <h2>Item Name</h2>
+    <h2>Item Name:</h2>
     <input
+      style="width: 140px; height: 26px"
       type="text"
       name="name"
       minlength="1"
@@ -71,6 +72,7 @@
       value="<%= item_data.title %>"
       required
     />
+
     <h2>Select a shape</h2>
     <select name="shapeId" id="shape">
       <option value="<%= item_data.shape._id %>" selected>
@@ -112,6 +114,7 @@
     </select>
     <h2>Amount in stock?</h2>
     <input
+      style="width: 140px; height: 26px"
       type="number"
       name="stockCount"
       value="<%= instance.stockcount %>"

@@ -2,14 +2,16 @@
 <nav class="nav">
   <h1><%= title %></h1>
   <form action="/home/inventory/sort/color" method="GET">
-    <p>Sort by Color:</p>
-    <select name="value" id="sort">
+    <h2>Sort by Color:</h2>
+    <select style="width: 140px; height: 26px" name="value" id="sort">
       <option value="All">All</option>
       <% color_list.map(color => { %>
       <option value="<%= color.name %>"><%= color.name %></option>
       <% }) %>
     </select>
-    <button type="submit">Submit</button>
+    <button style="margin: 0 1em" class="btnStyleYes" type="submit">
+      Submit
+    </button>
   </form>
 
   <div>
