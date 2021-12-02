@@ -35,11 +35,11 @@ router.get('/inventory/:id/update', item_controller.update_item_get);
 router.post('/inventory/create/item', item_controller.item_create_post);
 
 // POST request to create a new color
-router.post('/inventory/update/colors', color_controller.color_create_post);
+router.post('/inventory/update/colors/add', color_controller.color_create_post);
 
 // POST request to remove a color
 router.post(
-  '/inventory/update/colors/remove/:id',
+  '/inventory/update/colors/remove',
   color_controller.color_remove_post
 );
 

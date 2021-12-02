@@ -41,7 +41,6 @@ exports.item_view_get = async function (req, res) {
       .populate('item')
       .populate({ path: 'item', populate: { path: 'shape' } })
       .populate({ path: 'item', populate: { path: 'color' } });
-    console.log(itemData);
     if (itemData.length) {
       res.render('item', {
         item_data: itemData[0].item,
@@ -79,9 +78,25 @@ exports.create_item_get = async function (req, res) {
   }
 };
 
-// Display delete an item page
-exports.delete_item_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Delete Item Page');
+// Display delete item page
+exports.delete_item_get = async function (req, res) {
+  try {
+    const itemData = await ItemInstance.find({ item: req.params.id })
+      .populate('item')
+      .populate({ path: 'item', populate: { path: 'shape' } })
+      .populate({ path: 'item', populate: { path: 'color' } });
+    if (itemData.length) {
+      res.render('delete_item', {
+        item_data: itemData[0].item,
+        instance: itemData[0],
+      });
+    }
+  } catch (e) {
+    res.render('error', {
+      message: 'Error displaying delete item page',
+      error: e,
+    });
+  }
 };
 
 // Display update an item page
@@ -122,8 +137,27 @@ exports.item_create_post = async function (req, res) {
 };
 
 // POST request to delete an item
-exports.delete_item_post = function (req, res) {
-  res.send('NOT IMPLEMENTED: Item Delete POST');
+exports.delete_item_post = async function (req, res) {
+  try {
+    const instance = await ItemInstance.find({ item: req.params.id }, '_id');
+    ItemInstance.findByIdAndRemove(instance[0]._id, function callback(err) {
+      if (err) {
+        return next(err);
+      }
+    });
+    Item.findByIdAndRemove(ObjectId(req.params.id), function callback(err) {
+      if (err) {
+        return next(err);
+      } else {
+        res.redirect('/home/inventory');
+      }
+    });
+  } catch (e) {
+    res.render('error', {
+      message: 'Error creating a new item.',
+      error: e,
+    });
+  }
 };
 
 // POST request to update an item

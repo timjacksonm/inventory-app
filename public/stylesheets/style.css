@@ -50,3 +50,31 @@ a {
 .item:hover {
   background-color: #2a2e3571;
 }
+.btnStyleNo {
+  width: 140px;
+  height: 46px;
+  border: 3px solid rgb(255, 49, 49);
+  background-color: transparent;
+  font-family: sans-serif;
+  color: rgb(178, 190, 205);
+  font-weight: 700;
+  font-size: 16px;
+}
+.btnStyleYes {
+  width: 140px;
+  height: 46px;
+  border: 3px solid rgb(9, 195, 114);
+  background-color: transparent;
+  font-family: sans-serif;
+  color: rgb(178, 190, 205);
+  font-weight: 700;
+  font-size: 16px;
+}
+.btnStyleNo:hover {
+  background-color: rgb(255, 49, 49);
+  color: #fff;
+}
+.btnStyleYes:hover {
+  background-color: rgb(9, 195, 114);
+  color: #fff;
+}

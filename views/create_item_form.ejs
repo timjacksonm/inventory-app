@@ -7,7 +7,11 @@
   </div>
 </nav>
 
-<form action="" method="POST">
+<form
+  action=""
+  method="POST"
+  onSubmit="document.getElementById('submitAdd').disabled=true;"
+>
   <h2>Item Name</h2>
   <input type="text" name="name" minlength="1" maxlength="10" required />
   <h2>Select a shape</h2>
@@ -35,7 +39,7 @@
   </select>
   <h2>Amount in stock?</h2>
   <input type="number" name="stockCount" value="0" min="0" max="10" />
-  <button type="submit">Submit</button>
+  <button id="submitAdd" type="submit">Submit</button>
 </form>
 
 <%- include('footer') -%>

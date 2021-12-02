@@ -7,15 +7,23 @@
   </div>
 </nav>
 
-<form action="/home/inventory/update/colors" method="POST">
+<form
+  action="/home/inventory/update/colors/add"
+  method="POST"
+  onSubmit="document.getElementById('submitAdd').disabled=true;"
+>
   <h2>Add a new color</h2>
   <input type="color" name="color" />
   <p>Name of Color:</p>
   <input type="text" name="name" minlength="1" maxlength="10" required />
-  <button class="type submit">Submit</button>
+  <button id="submitAdd" type="submit">Submit</button>
 </form>
 
-<form action="/home/inventory/update/colors/remove/123" method="POST">
+<form
+  action="/home/inventory/update/colors/remove"
+  method="POST"
+  onSubmit="document.getElementById('submitRemove').disabled=true;"
+>
   <h2>Remove a color</h2>
   <% if (color_in_use) { %>
   <p style="color: red">
@@ -28,7 +36,8 @@
     <% }) %>
   </select>
   <button
-    class="type submit"
+    id="submitRemove"
+    type="submit"
     onclick="return confirm('Delete selected color?')"
   >
     Submit
