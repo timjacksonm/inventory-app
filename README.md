@@ -1,7 +1,7 @@
 <h1 align="center">
    Inventory-App
 </h1>
-<image align="center" src="/public/images/inventoryapplogo.png" width="100%"> 
+<image align="center" src="/public/images/inventoryapplogo.png" width="100%">
 
 <h4 align="center">I used Node.js, Express & Ejs JavaScript templating for this project.</h4>
 <p align="center">
@@ -36,7 +36,7 @@
 ## Summary
 
    <p>
-My first real project with Node and Express. I was focused on learning CRUD functionality and understanding different http request. I definetly thought of better ideas to improve the app like creating a database of different shapes with really basic svgs that are downloadable. In the end I decided to keep it simple and learn what I needed so I can spend my time on future projects that are more in depth.
+My first real project with Node and Express. I was focused on learning CRUD functionality and understanding different http request. I definitely thought of better ideas to improve the app like creating a database of different shapes with really basic svgs that are downloadable. In the end I decided to keep it simple and learn what I needed so I can spend my time on future projects that are more in depth.
     </p>
 
 ## Author
