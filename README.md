@@ -1,8 +1,9 @@
 <h1 align="center">
-   <image src="/public/images/inventoryapplogo.png" width="50%"> 
+   Inventory-App
 </h1>
+<image align="center" src="/public/images/inventoryapplogo.png" width="100%"> 
 
-<h4 align="center"> Inventory-App.I used Node.js, Express & Ejs JavaScript templating for this project.</h4>
+<h4 align="center">I used Node.js, Express & Ejs JavaScript templating for this project.</h4>
 <p align="center">
   <a href="#screenshots">Screenshots</a> •
   <a href="#goals">Goals</a> •
